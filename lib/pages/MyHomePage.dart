@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_v/models/Dish.dart';
 import 'package:flutter_app_v/widgets/AboutDesc.dart';
-import 'package:flutter_app_v/widgets/ItemBtn.dart';
+import 'package:flutter_app_v/widgets/MainItem.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -13,6 +14,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+
+  List<Dish> _stabList = [
+    Dish(country: 'Chinese',title: 'Hot & Prawn Noodles', description: 'Loren ipsum dolar sit amen,'
+        'cons ectetur adipistingelit, set doesie mod temor incidid unit uno labarret dalore magna aliqua ua.',
+      imageUrl: 'assets/images/noodle.png',
+      ingredients: ['element_1', 'element_2', 'element_3'],
+      timeForPrepear: 20,),
+
+    Dish(country: 'Chinese',title: 'BHG Bistro', description: 'Loren ipsum dolar sit amen,'
+        'cons ectetur adipistingelit, set doesie mod temor incidid unit uno labarret dalore magna aliqua ua.',
+      imageUrl: 'assets/images/bhg_bistro.png',
+      ingredients: ['element_1', 'element_2', 'element_3', 'element_4', 'element_5', 'element_6'],
+      timeForPrepear: 34,),
+
+    Dish(country: 'Italy',title: 'Italy Noodles', description: 'Loren ipsum dolar sit amen,'
+        'cons ectetur adipistingelit, set doesie mod temor incidid unit uno labarret dalore magna aliqua ua.',
+      imageUrl: 'assets/images/noodle_2.png',
+      ingredients: ['element_1', 'element_2', 'element_3', 'element_4'],
+      timeForPrepear: 17,),
+  ];
+
+
+  void _addDish(String title) {
+    print('dish $title');
+  }
+
+  void _viewRecipe(String title) {
+    print('viewRecipe of $title');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,90 +55,84 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(),
         ),
       ),
-      body: Container(
-        color: Colors.white,
-        //  padding: EdgeInsets.only(top: 40),
-        margin: EdgeInsets.symmetric(horizontal: 40, vertical: 70),
-        child: Stack(
-          alignment: Alignment.topRight,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(top: 75),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      gradient: new LinearGradient(colors: [
-                        Colors.red.withOpacity(0.9),
-                        Colors.orange.withOpacity(0.9),
-                      ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 70,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 20.0),
-                          child: Text(
-                            '| Chinese', style: Theme.of(context).textTheme.caption,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                          child: Text(
-                              'Hot & Prawn Noodles',
-                              style: Theme.of(context).textTheme.title
-                          ),
-                        ),
-                        Text(
-                          'Loren ipsum dolaor sit amen, cons ectetur adipisting'
-                              'elit, set doesie mod temor incidid unit utit labare'
-                              'et dalore magna aliquia ua.',
-                          style: Theme.of(context).textTheme.body1,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                          child: Row(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+         //  height: 800,
+            child: ListView.builder(itemBuilder: (ctx, index){
+              return Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: MainItem(dish: _stabList[index], addDish: _addDish,viewRecipe: _viewRecipe,));
+            },
+            itemCount: _stabList.length,
+            scrollDirection:Axis.horizontal,),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.red.withOpacity(0.9),
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+            height: 140,
+            child: Container(
+              padding: EdgeInsets.all(5),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Image.asset('assets/images/bhg_bistro.png'),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.symmetric( horizontal: 20),
+                      child: Column(
+                       // crossAxisAlignment: CrossAxisAlignment.start,
+                      //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              AboutDesc(child: Icon(Icons.alarm), text: '20 min',),
-                              AboutDesc(child: Icon(Icons.format_align_right), text: '5 Ing',),
+                              Text('| Chinese', style: TextStyle(
+                                color: Colors.black.withOpacity(0.4),
+                              ),),
+                              Spacer(),
+                              Container(
+                                  height: 50,
+                                  child: Icon(Icons.fastfood, size: 30,)),
                             ],
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            ItemBtn(height: 60, width: 60, child: Icon(Icons.add),),
-                            ItemBtn(
-                              height: 60,
-                              width: 180,
-                              child: Text(
-                                'View Recipe',
-                                style: Theme.of(context).textTheme.display1,
+                          Expanded(child: Center(
+                            child: Text('Fried Crispy Chiken with sausage', style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              height: 1
+                            )),
+                          )),
+                          Row(
+                            children: <Widget>[
+                              AboutDesc(
+                                child: Icon(Icons.alarm),
+                                text: '28 min',
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              Spacer(),
+                              AboutDesc(
+                                child: Icon(Icons.format_align_right),
+                                text: '3 Ing',
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
+                  )
+                ],
               ),
             ),
-            Container(
-              width: 250,
-              height: 250,
-              child: Image.asset('assets/images/noodle'
-                  '.png'),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+
+

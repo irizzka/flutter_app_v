@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_v/pages/MyHomePage.dart';
-import 'package:flutter_app_v/widgets/AboutDesc.dart';
-import 'package:flutter_app_v/widgets/ItemBtn.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter  Samsung',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
         textTheme: TextTheme(
           display1: TextStyle(
               fontSize: 18, fontWeight: FontWeight.bold, color:  Colors.black87),

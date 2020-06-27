@@ -4,15 +4,17 @@ class ItemBtn extends StatelessWidget {
   final double height;
   final double width;
   final Widget child;
+  final String dishTitle;
+  final Function addDishF;
 
-  const ItemBtn({Key key, this.height, this.width, this.child})
+  const ItemBtn({Key key, this.height,this.dishTitle, this.width, this.child, this.addDishF})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('tap view recipe');
+          addDishF(dishTitle);
       },
       child: Container(
         decoration: BoxDecoration(
