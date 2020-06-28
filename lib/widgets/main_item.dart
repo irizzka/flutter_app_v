@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_v/models/Dish.dart';
-import 'package:flutter_app_v/widgets/AboutDesc.dart';
-import 'package:flutter_app_v/widgets/ItemBtn.dart';
+import 'package:flutter_app_v/widgets/about_desc.dart';
+import 'package:flutter_app_v/widgets/item_btn.dart';
 
 class MainItem extends StatelessWidget {
   final Dish dish;

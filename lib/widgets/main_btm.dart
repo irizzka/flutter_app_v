@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_v/models/Dish.dart';
+import 'package:flutter_app_v/pages/burger_page.dart';
 import 'package:flutter_app_v/pages/test_layout_builder.dart';
 import 'package:flutter_app_v/widgets/about_desc.dart';
 
@@ -48,7 +49,9 @@ class MainBtm extends StatelessWidget {
                           Spacer(),
                           Container(
                               height: 50,
-                              child: Icon(Icons.fastfood, size: 30,)),
+                              child: IconButton(icon: Icon(Icons.fastfood, size: 30,),onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> BurgerPage()));
+                              },)),
                         ],
                       ),
                       Expanded(child: Center(

@@ -18,7 +18,7 @@ class AboutDesc extends StatelessWidget {
           child: child,
           padding: EdgeInsets.only(right: 5.0),
         ),
-        Text(text)
+        Text(text, style: Theme.of(context).textTheme.display3.copyWith(fontSize: 14),)
       ],
     );
   }
